@@ -1,0 +1,886 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nossa História ❤️</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background:
+                radial-gradient(circle at top, #fff0f5 0%, #fce4ec 35%, #f8bbd0 100%);
+            color: #4a2432;
+            overflow-x: hidden;
+        }
+
+        /* Corações de fundo */
+        .hearts {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -50px;
+            font-size: 22px;
+            opacity: 0.25;
+            animation: subir linear infinite;
+        }
+
+        .heart:nth-child(1) {
+            left: 8%;
+            animation-duration: 12s;
+            animation-delay: 1s;
+        }
+
+        .heart:nth-child(2) {
+            left: 20%;
+            animation-duration: 16s;
+            animation-delay: 4s;
+        }
+
+        .heart:nth-child(3) {
+            left: 35%;
+            animation-duration: 13s;
+            animation-delay: 2s;
+        }
+
+        .heart:nth-child(4) {
+            left: 50%;
+            animation-duration: 18s;
+            animation-delay: 5s;
+        }
+
+        .heart:nth-child(5) {
+            left: 67%;
+            animation-duration: 14s;
+            animation-delay: 3s;
+        }
+
+        .heart:nth-child(6) {
+            left: 82%;
+            animation-duration: 17s;
+            animation-delay: 1s;
+        }
+
+        .heart:nth-child(7) {
+            left: 93%;
+            animation-duration: 11s;
+            animation-delay: 6s;
+        }
+
+        @keyframes subir {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            15% {
+                opacity: 0.3;
+            }
+
+            85% {
+                opacity: 0.3;
+            }
+
+            100% {
+                transform: translateY(-110vh) rotate(25deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 20px 60px;
+        }
+
+        /* Cabeçalho */
+
+        header {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .small-heart {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-family: Georgia, serif;
+            font-size: clamp(42px, 8vw, 72px);
+            font-weight: normal;
+            color: #9c274f;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-family: Georgia, serif;
+            font-size: 21px;
+            color: #704052;
+            font-style: italic;
+        }
+
+        .today {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #8a5868;
+        }
+
+        /* Contador principal */
+
+        .main-counter {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            border-radius: 30px;
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: 0 15px 50px rgba(116, 36, 64, 0.12);
+            margin-bottom: 35px;
+        }
+
+        .main-title {
+            font-family: Georgia, serif;
+            font-size: 24px;
+            color: #7e2444;
+            margin-bottom: 8px;
+        }
+
+        .main-date {
+            color: #956273;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .main-time {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .main-number {
+            font-size: clamp(28px, 6vw, 48px);
+            font-weight: 700;
+            color: #9c274f;
+        }
+
+        .main-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #936073;
+        }
+
+        .main-separator {
+            font-size: 28px;
+            color: #c77b94;
+        }
+
+        /* Cards */
+
+        .section-title {
+            text-align: center;
+            font-family: Georgia, serif;
+            font-size: 28px;
+            font-weight: normal;
+            margin: 45px 0 25px;
+            color: #7e2444;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.78);
+            backdrop-filter: blur(8px);
+            border-radius: 24px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 10px 35px rgba(116, 36, 64, 0.10);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 40px rgba(116, 36, 64, 0.16);
+        }
+
+        .icon {
+            font-size: 45px;
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
+            font-family: Georgia, serif;
+            font-size: 21px;
+            color: #7e2444;
+            margin-bottom: 7px;
+        }
+
+        .card-date {
+            font-size: 13px;
+            color: #a06a7b;
+            margin-bottom: 20px;
+        }
+
+        .counter {
+            color: #9c274f;
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 1.7;
+        }
+
+        .counter span {
+            white-space: nowrap;
+        }
+
+        /* Linha do tempo */
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #d994a9;
+            transform: translateX(-50%);
+        }
+
+        .event {
+            position: relative;
+            width: 50%;
+            padding: 10px 35px 35px;
+        }
+
+        .event:nth-child(odd) {
+            text-align: right;
+        }
+
+        .event:nth-child(even) {
+            margin-left: 50%;
+        }
+
+        .event-dot {
+            position: absolute;
+            top: 10px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #a8325b;
+            border: 4px solid #fce4ec;
+            box-shadow: 0 0 0 2px #c77b94;
+        }
+
+        .event:nth-child(odd) .event-dot {
+            right: -9px;
+        }
+
+        .event:nth-child(even) .event-dot {
+            left: -9px;
+        }
+
+        .event-content {
+            background: rgba(255, 255, 255, 0.72);
+            border-radius: 18px;
+            padding: 20px;
+            box-shadow: 0 8px 25px rgba(116, 36, 64, 0.08);
+        }
+
+        .event-date {
+            font-size: 13px;
+            color: #a05f75;
+            margin-bottom: 6px;
+        }
+
+        .event-title {
+            font-family: Georgia, serif;
+            font-size: 20px;
+            color: #7e2444;
+        }
+
+        /* Frase */
+
+        .quote {
+            margin: 55px auto 0;
+            max-width: 700px;
+            text-align: center;
+            padding: 35px 25px;
+        }
+
+        .quote-text {
+            font-family: Georgia, serif;
+            font-size: clamp(20px, 4vw, 27px);
+            line-height: 1.6;
+            color: #71374b;
+            font-style: italic;
+        }
+
+        .quote-heart {
+            display: block;
+            font-size: 25px;
+            margin-top: 15px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 35px;
+            color: #986274;
+            font-size: 13px;
+        }
+
+        /* Mobile */
+
+        @media (max-width: 700px) {
+            .container {
+                padding: 30px 15px 45px;
+            }
+
+            header {
+                margin-bottom: 30px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                padding: 25px 18px;
+            }
+
+            .main-counter {
+                padding: 28px 15px;
+            }
+
+            .main-time {
+                gap: 6px;
+            }
+
+            .main-separator {
+                display: none;
+            }
+
+            .main-number {
+                font-size: 30px;
+            }
+
+            .timeline::before {
+                left: 15px;
+            }
+
+            .event,
+            .event:nth-child(even) {
+                width: 100%;
+                margin-left: 0;
+                padding: 10px 10px 25px 45px;
+                text-align: left;
+            }
+
+            .event:nth-child(odd) .event-dot,
+            .event:nth-child(even) .event-dot {
+                left: 6px;
+                right: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Corações animados -->
+    <div class="hearts">
+        <div class="heart">❤️</div>
+        <div class="heart">💕</div>
+        <div class="heart">❤️</div>
+        <div class="heart">💗</div>
+        <div class="heart">💕</div>
+        <div class="heart">❤️</div>
+        <div class="heart">💗</div>
+    </div>
+
+    <main class="container">
+
+        <!-- Cabeçalho -->
+        <header>
+            <div class="small-heart">❤️</div>
+
+            <h1>Nossa História</h1>
+
+            <div class="subtitle">
+                Dois corações, uma história e muitos momentos.
+            </div>
+
+            <div class="today" id="today"></div>
+        </header>
+
+
+        <!-- Contador principal -->
+        <section class="main-counter">
+
+            <div class="main-title">
+                Desde o nosso primeiro encontro
+            </div>
+
+            <div class="main-date">
+                26 de dezembro de 2022
+            </div>
+
+            <div class="main-time">
+
+                <div>
+                    <div class="main-number" id="mainDays">0</div>
+                    <div class="main-label">dias</div>
+                </div>
+
+                <div class="main-separator">:</div>
+
+                <div>
+                    <div class="main-number" id="mainHours">0</div>
+                    <div class="main-label">horas</div>
+                </div>
+
+                <div class="main-separator">:</div>
+
+                <div>
+                    <div class="main-number" id="mainMinutes">0</div>
+                    <div class="main-label">minutos</div>
+                </div>
+
+                <div class="main-separator">:</div>
+
+                <div>
+                    <div class="main-number" id="mainSeconds">0</div>
+                    <div class="main-label">segundos</div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Contadores -->
+        <h2 class="section-title">
+            Cada capítulo da nossa história ❤️
+        </h2>
+
+        <section class="cards">
+
+            <!-- Primeiro encontro -->
+            <div class="card">
+
+                <div class="icon">💕</div>
+
+                <h3>Primeiro encontro</h3>
+
+                <div class="card-date">
+                    26/12/2022
+                </div>
+
+                <div class="counter" id="counterMeeting">
+                    Calculando...
+                </div>
+
+            </div>
+
+
+            <!-- Pedido de namoro -->
+            <div class="card">
+
+                <div class="icon">💑</div>
+
+                <h3>Pedido de namoro</h3>
+
+                <div class="card-date">
+                    03/03/2023
+                </div>
+
+                <div class="counter" id="counterDating">
+                    Calculando...
+                </div>
+
+            </div>
+
+
+            <!-- Pedido de noivado -->
+            <div class="card">
+
+                <div class="icon">💍</div>
+
+                <h3>Pedido de noivado</h3>
+
+                <div class="card-date">
+                    21/03/2026
+                </div>
+
+                <div class="counter" id="counterEngagement">
+                    Calculando...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Linha do tempo -->
+        <h2 class="section-title">
+            Nossa linha do tempo
+        </h2>
+
+        <section class="timeline">
+
+            <div class="event">
+
+                <div class="event-dot"></div>
+
+                <div class="event-content">
+
+                    <div class="event-date">
+                        26 de dezembro de 2022
+                    </div>
+
+                    <div class="event-title">
+                        💕 O primeiro encontro
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="event">
+
+                <div class="event-dot"></div>
+
+                <div class="event-content">
+
+                    <div class="event-date">
+                        03 de março de 2023
+                    </div>
+
+                    <div class="event-title">
+                        💑 O pedido de namoro
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="event">
+
+                <div class="event-dot"></div>
+
+                <div class="event-content">
+
+                    <div class="event-date">
+                        21 de março de 2026
+                    </div>
+
+                    <div class="event-title">
+                        💍 O pedido de noivado
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Frase -->
+        <section class="quote">
+
+            <div class="quote-text">
+                "Algumas histórias começam por acaso,
+                mas as melhores continuam sendo escritas
+                todos os dias."
+            </div>
+
+            <span class="quote-heart">❤️</span>
+
+        </section>
+
+
+        <footer>
+            Feito com amor, para celebrar a nossa história.
+        </footer>
+
+    </main>
+
+
+    <script>
+
+        /*
+         * ==========================================================
+         * CONFIGURAÇÃO DAS DATAS
+         * ==========================================================
+         *
+         * Se futuramente quiser alterar alguma data,
+         * basta modificar aqui.
+         *
+         * O horário utilizado é 00:00:00.
+         */
+
+        const dates = {
+
+            meeting: new Date(2022, 11, 26, 0, 0, 0),
+
+            dating: new Date(2023, 2, 3, 0, 0, 0),
+
+            engagement: new Date(2026, 2, 21, 0, 0, 0)
+
+        };
+
+
+        /*
+         * Calcula a diferença entre duas datas
+         * em anos, meses, dias, horas, minutos e segundos.
+         */
+
+        function calculateDifference(startDate, endDate) {
+
+            let years = endDate.getFullYear() - startDate.getFullYear();
+
+            let months = endDate.getMonth() - startDate.getMonth();
+
+            let days = endDate.getDate() - startDate.getDate();
+
+            let hours = endDate.getHours() - startDate.getHours();
+
+            let minutes = endDate.getMinutes() - startDate.getMinutes();
+
+            let seconds = endDate.getSeconds() - startDate.getSeconds();
+
+
+            if (seconds < 0) {
+
+                seconds += 60;
+                minutes--;
+
+            }
+
+
+            if (minutes < 0) {
+
+                minutes += 60;
+                hours--;
+
+            }
+
+
+            if (hours < 0) {
+
+                hours += 24;
+                days--;
+
+            }
+
+
+            if (days < 0) {
+
+                months--;
+
+                const previousMonth = new Date(
+                    endDate.getFullYear(),
+                    endDate.getMonth(),
+                    0
+                );
+
+                days += previousMonth.getDate();
+
+            }
+
+
+            if (months < 0) {
+
+                months += 12;
+                years--;
+
+            }
+
+
+            return {
+                years,
+                months,
+                days,
+                hours,
+                minutes,
+                seconds
+            };
+
+        }
+
+
+        /*
+         * Formata o resultado para exibição.
+         */
+
+        function formatDifference(startDate) {
+
+            const now = new Date();
+
+            const diff = calculateDifference(startDate, now);
+
+            let result = "";
+
+            if (diff.years > 0) {
+                result += `${diff.years} ano${diff.years !== 1 ? "s" : ""}`;
+            }
+
+            if (diff.months > 0) {
+                result += `${result ? ", " : ""}${diff.months} mês${diff.months !== 1 ? "es" : ""}`;
+            }
+
+            if (diff.days > 0) {
+                result += `${result ? ", " : ""}${diff.days} dia${diff.days !== 1 ? "s" : ""}`;
+            }
+
+            result += `<br>`;
+
+            result += `
+                ${String(diff.hours).padStart(2, "0")}h :
+                ${String(diff.minutes).padStart(2, "0")}m :
+                ${String(diff.seconds).padStart(2, "0")}s
+            `;
+
+            return result;
+
+        }
+
+
+        /*
+         * Atualiza os três contadores.
+         */
+
+        function updateCounters() {
+
+            const now = new Date();
+
+
+            /*
+             * Contador principal
+             */
+
+            const mainDiff = calculateDifference(
+                dates.meeting,
+                now
+            );
+
+            document.getElementById("mainDays").textContent =
+                calculateTotalDays(dates.meeting, now);
+
+            document.getElementById("mainHours").textContent =
+                String(mainDiff.hours).padStart(2, "0");
+
+            document.getElementById("mainMinutes").textContent =
+                String(mainDiff.minutes).padStart(2, "0");
+
+            document.getElementById("mainSeconds").textContent =
+                String(mainDiff.seconds).padStart(2, "0");
+
+
+            /*
+             * Cards
+             */
+
+            document.getElementById("counterMeeting").innerHTML =
+                formatDifference(dates.meeting);
+
+            document.getElementById("counterDating").innerHTML =
+                formatDifference(dates.dating);
+
+            document.getElementById("counterEngagement").innerHTML =
+                formatDifference(dates.engagement);
+
+        }
+
+
+        /*
+         * Calcula o total absoluto de dias.
+         */
+
+        function calculateTotalDays(startDate, endDate) {
+
+            const difference =
+                endDate.getTime() - startDate.getTime();
+
+            return Math.floor(
+                difference / (1000 * 60 * 60 * 24)
+            ).toLocaleString("pt-BR");
+
+        }
+
+
+        /*
+         * Mostra a data atual.
+         */
+
+        function updateToday() {
+
+            const now = new Date();
+
+            const formatted = now.toLocaleDateString(
+                "pt-BR",
+                {
+                    weekday: "long",
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric"
+                }
+            );
+
+            document.getElementById("today").textContent =
+                "Hoje é " + formatted;
+
+        }
+
+
+        /*
+         * Inicialização
+         */
+
+        updateToday();
+        updateCounters();
+
+
+        /*
+         * Atualiza os contadores a cada segundo.
+         */
+
+        setInterval(updateCounters, 1000);
+
+    </script>
+
+</body>
+</html>
+```
